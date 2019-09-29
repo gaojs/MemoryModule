@@ -1,3 +1,5 @@
 *.o
 *.dll
 *.res
+/Debug
+/x64
