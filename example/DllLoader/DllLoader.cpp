@@ -15,6 +15,9 @@ typedef int (*addNumberProc)(int, int);
 
 #define DLL_FILE TEXT("..\\SampleDLL\\SampleDLL.dll")
 
+#define EXE_FILE32 TEXT("..\\calc32.exe")
+#define EXE_FILE64 TEXT("..\\calc64.exe")
+
 void LoadFromFile(void)
 {
     addNumberProc addNumber;
@@ -53,10 +56,16 @@ void* ReadLibrary(size_t* pSize) {
     void* result;
     FILE* fp;
 
-    fp = _tfopen(DLL_FILE, _T("rb"));
+    //fp = _tfopen(DLL_FILE, _T("rb"));
+	PCSTR EXE_FILE = EXE_FILE32;
+	if (sizeof(void*) == 8) {
+		EXE_FILE = EXE_FILE64;
+	}
+    fp = _tfopen(EXE_FILE, _T("rb"));
     if (fp == NULL)
     {
-        _tprintf(_T("Can't open DLL file \"%s\"."), DLL_FILE);
+        //_tprintf(_T("Can't open DLL file \"%s\"."), DLL_FILE);
+        _tprintf(_T("Can't open exe file \"%s\"."), EXE_FILE);
         return NULL;
     }
 
@@ -106,7 +115,7 @@ void LoadFromMemory(void)
     handle = MemoryLoadLibrary(data, size);
     if (handle == NULL)
     {
-        _tprintf(_T("Can't load library from memory.\n"));
+        _tprintf(_T("Can't load library from memory. error=%d\n"), GetLastError());
         goto exit;
     }
 
@@ -114,6 +123,7 @@ void LoadFromMemory(void)
 	if(addNumber != NULL ){
 		_tprintf(_T("From memory: %d\n"), addNumber(1, 2));
 	}
+	MemoryCallEntryPoint(handle);
 
     resourceInfo = MemoryFindResource(handle, MAKEINTRESOURCE(VS_VERSION_INFO), RT_VERSION);
     _tprintf(_T("MemoryFindResource returned 0x%p\n"), resourceInfo);
@@ -339,11 +349,11 @@ void TestCustomAllocAndFree(void)
 
 int main()
 {
-    LoadFromFile();
-    printf("\n\n");
+    //LoadFromFile();
+    //printf("\n\n");
     LoadFromMemory();
-    printf("\n\n");
-    TestCustomAllocAndFree();
+    //printf("\n\n");
+    //TestCustomAllocAndFree();
     return 0;
 }
 
