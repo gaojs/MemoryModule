@@ -28,7 +28,9 @@ void LoadFromFile(void)
         return;
 
     addNumber = (addNumberProc)GetProcAddress(handle, "addNumbers");
-    _tprintf(_T("From file: %d\n"), addNumber(1, 2));
+	if(addNumber != NULL){
+		_tprintf(_T("From file: %d\n"), addNumber(1, 2));	
+	}
 
     resourceInfo = FindResource(handle, MAKEINTRESOURCE(VS_VERSION_INFO), RT_VERSION);
     _tprintf(_T("FindResource returned 0x%p\n"), resourceInfo);
@@ -109,7 +111,9 @@ void LoadFromMemory(void)
     }
 
     addNumber = (addNumberProc)MemoryGetProcAddress(handle, "addNumbers");
-    _tprintf(_T("From memory: %d\n"), addNumber(1, 2));
+	if(addNumber != NULL ){
+		_tprintf(_T("From memory: %d\n"), addNumber(1, 2));
+	}
 
     resourceInfo = MemoryFindResource(handle, MAKEINTRESOURCE(VS_VERSION_INFO), RT_VERSION);
     _tprintf(_T("MemoryFindResource returned 0x%p\n"), resourceInfo);
@@ -287,7 +291,9 @@ void TestAllocHighMemory(void *data, size_t size) {
     assert(handle != NULL);
 
     addNumber = (addNumberProc)MemoryGetProcAddress(handle, "addNumbers");
-    _tprintf(_T("From memory: %d\n"), addNumber(1, 2));
+	if(addNumber != NULL) {
+		_tprintf(_T("From memory: %d\n"), addNumber(1, 2));
+	}
 
     resourceInfo = MemoryFindResource(handle, MAKEINTRESOURCE(VS_VERSION_INFO), RT_VERSION);
     _tprintf(_T("MemoryFindResource returned 0x%p\n"), resourceInfo);
