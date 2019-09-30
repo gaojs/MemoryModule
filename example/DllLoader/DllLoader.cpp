@@ -15,8 +15,8 @@ typedef int (*addNumberProc)(int, int);
 
 #define DLL_FILE TEXT("..\\SampleDLL\\SampleDLL.dll")
 
-#define EXE_FILE32 TEXT("..\\calc32.exe")
-#define EXE_FILE64 TEXT("..\\calc64.exe")
+#define EXE_FILE32 TEXT("..\\dlgApp32.exe")
+#define EXE_FILE64 TEXT("..\\dlgApp64.exe")
 
 void LoadFromFile(void)
 {
