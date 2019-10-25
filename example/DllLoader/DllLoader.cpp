@@ -15,8 +15,10 @@ typedef int (*addNumberProc)(int, int);
 
 #define DLL_FILE TEXT("..\\SampleDLL\\SampleDLL.dll")
 
-#define EXE_FILE32 TEXT("..\\bin\\calc32.exe")
-#define EXE_FILE64 TEXT("..\\bin\\calc64.exe")
+//#define BIN_FILE32 TEXT("..\\bin\\calc32.exe")
+//#define EXE_FILE64 TEXT("..\\bin\\calc64.exe")
+#define BIN_FILE32 TEXT("..\\bin\\conDll32.dll")
+#define BIN_FILE64 TEXT("..\\bin\\conDll64.dll")
 
 void LoadFromFile(void)
 {
@@ -57,15 +59,15 @@ void* ReadLibrary(size_t* pSize) {
     FILE* fp;
 
     //fp = _tfopen(DLL_FILE, _T("rb"));
-	PCSTR EXE_FILE = EXE_FILE32;
+	PCSTR BIN_FILE = BIN_FILE32;
 	if (sizeof(void*) == 8) {
-		EXE_FILE = EXE_FILE64;
+		BIN_FILE = BIN_FILE64;
 	}
-    fp = _tfopen(EXE_FILE, _T("rb"));
+    fp = _tfopen(BIN_FILE, _T("rb"));
     if (fp == NULL)
     {
         //_tprintf(_T("Can't open DLL file \"%s\"."), DLL_FILE);
-        _tprintf(_T("Can't open exe file \"%s\"."), EXE_FILE);
+        _tprintf(_T("Can't open exe file \"%s\"."), BIN_FILE);
         return NULL;
     }
 
