@@ -9,14 +9,14 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#include "../../MemoryModule.h"
+#include "..\\..\\MemoryModule.h"
 
 typedef int (*addNumberProc)(int, int);
 
 #define DLL_FILE TEXT("..\\SampleDLL\\SampleDLL.dll")
 
-#define EXE_FILE32 TEXT("..\\dlgApp32.exe")
-#define EXE_FILE64 TEXT("..\\dlgApp64.exe")
+#define EXE_FILE32 TEXT("..\\bin\\calc32.exe")
+#define EXE_FILE64 TEXT("..\\bin\\calc64.exe")
 
 void LoadFromFile(void)
 {
