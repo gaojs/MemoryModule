@@ -8,17 +8,17 @@
 #include <tchar.h>
 #include <stdio.h>
 #include <malloc.h>
-
 #include "..\\..\\MemoryModule.h"
 
-typedef int (*addNumberProc)(int, int);
-
-#define DLL_FILE TEXT("..\\SampleDLL\\SampleDLL.dll")
-
 //#define BIN_FILE32 TEXT("..\\bin\\calc32.exe")
-//#define EXE_FILE64 TEXT("..\\bin\\calc64.exe")
-#define BIN_FILE32 TEXT("..\\bin\\conDll32.dll")
-#define BIN_FILE64 TEXT("..\\bin\\conDll64.dll")
+//#define BIN_FILE64 TEXT("..\\bin\\calc64.exe")
+//#define BIN_FILE32 TEXT("..\\bin\\conDll32.dll")
+//#define BIN_FILE64 TEXT("..\\bin\\conDll64.dll")
+#define BIN_FILE32 TEXT("..\\bin\\mfcDll32.dll")
+#define BIN_FILE64 TEXT("..\\bin\\mfcDll64.dll")
+
+typedef int (*addNumberProc)(int, int);
+#define DLL_FILE TEXT("..\\SampleDLL\\SampleDLL.dll")
 
 void LoadFromFile(void)
 {
